@@ -29,7 +29,7 @@ public class Servidor {
 				DataInputStream entrada = new DataInputStream(socket.getInputStream());
 				DataOutputStream saida = new DataOutputStream(socket.getOutputStream());
 	
-				String cpf = entrada.readUTF();			
+				String cpf = entrada.readUTF();
 				boolean valido = validaCpf(cpf);			
 				String resultado = valido ? "TRUE" : "FALSE";
 				System.out.println("Resultado.........: " + valido);
@@ -57,7 +57,7 @@ public class Servidor {
 		
 		System.out.println("CPF...............: " + cpf);
 		
-		if (!cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+") && verificaIguais(cpf)) {
+		if (validString(cpf)) {
 			
 			Integer xsoma = getDigito(cpf);
 			Integer xresto = (xsoma % 11);
@@ -76,6 +76,10 @@ public class Servidor {
 			return valida.equals(cpf.substring(9,11));
 		}
 		return false;
+	}
+
+	private static boolean validString(String cpf) {
+		return !cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+") && verificaIguais(cpf);
 	}
 	
 	private static boolean verificaIguais(String text) {
