@@ -2,6 +2,7 @@ package com.java;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -16,7 +17,7 @@ import java.net.Socket;
  */
 public class Servidor {	
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException{
 
 		try {
 
@@ -48,8 +49,8 @@ public class Servidor {
 					System.out.println("\nServer closed !!!");
 				}
 			}
-		} catch (Exception e) {
-			e.getMessage();
+		} catch (IOException e) {
+			
 		}
 	}
 	
