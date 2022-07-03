@@ -23,30 +23,34 @@ public class Servidor {
 			ServerSocket server = new ServerSocket(50000);
 			System.out.println("Server started !!! \n");
 
-			Socket socket = server.accept();
-			DataInputStream entrada = new DataInputStream(socket.getInputStream());
-			DataOutputStream saida = new DataOutputStream(socket.getOutputStream());
-
-			String cpf = entrada.readUTF();			
-			boolean valido = isValidCPFmeu(cpf);			
-			String resultado = valido ? "TRUE" : "FALSE";
-			System.out.println("Resultado.........: " + valido);
-			
-			if (valido) {				
-				System.out.println("\nCPF Valido");
-			}else {
-				System.out.println("\nCPF Invalido");
-			}			
-
-			saida.writeUTF(resultado);
-			socket.close();
-			server.close();
-			System.out.println("\nServer closed !!!");
-
+			boolean up = true;
+			while (true) {
+				Socket socket = server.accept();
+				DataInputStream entrada = new DataInputStream(socket.getInputStream());
+				DataOutputStream saida = new DataOutputStream(socket.getOutputStream());
+	
+				String cpf = entrada.readUTF();			
+				boolean valido = isValidCPFmeu(cpf);			
+				String resultado = valido ? "TRUE" : "FALSE";
+				System.out.println("Resultado.........: " + valido);
+				
+				if (valido) {				
+					System.out.println("\nCPF Valido");
+				}else {
+					System.out.println("\nCPF Invalido");
+				}			
+	
+				saida.writeUTF(resultado);
+				socket.close();
+				
+				if (!up) {
+					server.close();
+					System.out.println("\nServer closed !!!");
+				}
+			}
 		} catch (Exception e) {
 			e.getMessage();
 		}
-
 	}
 	
 	private static boolean isValidCPFmeu(String cpf) {		

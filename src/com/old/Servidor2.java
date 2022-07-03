@@ -29,28 +29,34 @@ public class Servidor2 {
 			ServerSocket server = new ServerSocket(50000);
 			System.out.println("Server started !!!");
 
-			Socket socket = server.accept();
-			DataInputStream entrada = new DataInputStream(socket.getInputStream());
-			DataOutputStream saida = new DataOutputStream(socket.getOutputStream());
-
-			String cpf = entrada.readUTF();
-			System.out.println(cpf);
-
-			boolean cpfValido = isValidCPF(cpf);
-			System.out.println(cpfValido);
-
-			String resultado = cpfValido ? "TRUE" : "FALSE";
+			boolean up = true;
+			while (true) {
+				Socket socket = server.accept();
+				DataInputStream entrada = new DataInputStream(socket.getInputStream());
+				DataOutputStream saida = new DataOutputStream(socket.getOutputStream());
+	
+				String cpf = entrada.readUTF();
+				System.out.println(cpf);
+	
+				boolean cpfValido = isValidCPF(cpf);
+				System.out.println(cpfValido);
+	
+				String resultado = cpfValido ? "TRUE" : "FALSE";
+				
+				if (cpfValido) {
+					resultado = "TRUE";
+				}else {
+					resultado = "FALSE";
+				}
 			
-			if (cpfValido) {
-				resultado = "TRUE";
-			}else {
-				resultado = "FALSE";
+
+				saida.writeUTF(resultado);
+				socket.close();
+				if (!up) {
+					server.close();
+				}
 			}
 			
-
-			saida.writeUTF(resultado);
-			socket.close();
-			server.close();
 
 		} catch (Exception e) {
 			e.getMessage();
