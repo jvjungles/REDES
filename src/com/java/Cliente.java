@@ -7,15 +7,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 
-/**
- * CETEJ33 - Java Aplicado A Redes De Computadores - JAVA_XXIV (2022_01)
- * 
- * Atividade 01 - Sockets Java 
- *
- * @author - Joao Jungles
- */
 public class Cliente {
 
+	// Cliente - Socket
 	public static void main(String[] args) {
 		
 		System.out.println("Inicio...\n");
@@ -23,11 +17,9 @@ public class Cliente {
 		System.out.println("Client started !!!");
 		System.out.println("------------------------------------------\n");
 		
-		try {            
-				
+		try {	
 			boolean up = true;			
 			while (true) {
-				
 				System.out.println("------------------------------------------");
 				Socket socket = new Socket("127.0.0.1", 50000);            
 				DataInputStream entrada = new DataInputStream(socket.getInputStream());
@@ -50,8 +42,7 @@ public class Cliente {
 					System.out.println("\nClient closed !!!");					
 				}	            
 	            System.out.println("------------------------------------------"); 
-			}			
-            
+			}
         } catch(IOException e) {
             e.getMessage();
         }		
