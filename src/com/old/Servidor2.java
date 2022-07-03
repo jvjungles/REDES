@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * CETEJ33 - Java Aplicado A Redes De Computadores - JAVA_XXIV (2022_01)
@@ -95,8 +97,27 @@ public class Servidor2 {
 		System.out.println("end");
 		return cpf.equals(cpf.substring(0, 9) + penultimo.toString() + ultimo.toString());
 	}
+	
+	private boolean iguais(String text) {
+		
+		Set<String> strings = new HashSet<String>();
+		
+		for (int i = 0; i < text.length(); i++) {
+			
+			strings.add(text.substring(0, i));
+		}		
+
+		if(strings.size() == 1)
+		{
+			return true; 
+			//sysout("Nao existem strings repetidas");
+		}
+		return false;
+	}
 
 	private static String padLeft(String text, char character) {
+		
+		
 		return String.format("%11s", text).replace(' ', character);
 	}
 
