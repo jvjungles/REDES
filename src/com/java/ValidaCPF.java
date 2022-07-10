@@ -26,7 +26,7 @@ public class ValidaCPF {
 		return false;
 	}
 	
-	//valida string digitada
+	// valida string digitada
 	private static boolean validString(String cpf) {
 		return !cpf.isEmpty() && cpf.length() == 11 && cpf.matches("[0-9]+") && verificaIguais(cpf);
 	}
@@ -48,7 +48,7 @@ public class ValidaCPF {
 		return cont == 110 ? false : true;
 	}
 	
-	//get digitos finais
+	// get digitos finais
 	private static int getDigito(String cpf) {		
 		int soma= 0;					
 		for (int j = 0; j < 10; j++) {				
