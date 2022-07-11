@@ -12,7 +12,9 @@ public class Servidor {
 	public static void main(String[] args) throws IOException{
 		try {
 			ServerSocket server = new ServerSocket(50000);
-			System.out.println("Server started !!! \n");
+			System.out.println("------------------------------------------");
+			System.out.println("Server started !!!");
+			System.out.println("------------------------------------------\n");
 			boolean up = true;
 			while (true) {
 				Socket socket = server.accept();
